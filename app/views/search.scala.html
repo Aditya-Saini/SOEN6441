@@ -1,0 +1,87 @@
+@(title: String, results: List[String])
+
+@main(title) {
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="display-4 text-primary mb-4">@title</h1>
+                
+                <!-- Search Form -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form method="POST" action="@routes.SearchController.search()">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="query" class="form-label">Search Keywords</label>
+                                        <input type="text" 
+                                               class="form-control form-control-lg" 
+                                               id="query" 
+                                               name="query" 
+                                               placeholder="Enter search terms (e.g., 'artificial intelligence', 'climate change')"
+                                               required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="form-label">&nbsp;</label>
+                                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                                            <i class="fas fa-search"></i> Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Search Results -->
+                @if(!results.isEmpty()) {
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Search Results (@results.size() found)</h5>
+                        </div>
+                        <div class="card-body">
+                            @for(result <- results) {
+                                <div class="search-result-item mb-3 p-3 border rounded">
+                                    <h6 class="text-primary">@result</h6>
+                                    <p class="text-muted mb-2">This is a mock article description. In the real implementation, this would contain the actual article content from the News API.</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">
+                                            <i class="fas fa-calendar"></i> 2024-10-29 | 
+                                            <i class="fas fa-newspaper"></i> Mock Source
+                                        </small>
+                                        <a href="#" class="btn btn-sm btn-outline-primary">Read More</a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                } else {
+                    <div class="text-center py-5">
+                        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">No search performed yet</h5>
+                        <p class="text-muted">Enter your search terms above to find news articles.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .search-result-item {
+            transition: all 0.3s ease;
+        }
+        
+        .search-result-item:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+    </style>
+}

@@ -3,11 +3,17 @@
 # https://www.playframework.com/documentation/latest/JavaRouting
 # ~~~~
 
-# An example controller showing a sample home page
+# Home page
 GET     /                           controllers.HomeController.index()
+
+# Search page
+GET     /search                     controllers.SearchController.index()
+POST    /search                     controllers.SearchController.search()
+
+# Source page
+GET     /sources                    controllers.SourceController.index()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
-# Health check endpoint
-GET     /health                     controllers.HomeController.health()
+
