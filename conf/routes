@@ -8,7 +8,7 @@ GET     /                           controllers.HomeController.index()
 
 # Search page
 GET     /search                     controllers.SearchController.index()
-POST    /search                     controllers.SearchController.search()
+POST    /search                     controllers.SearchController.search(request: play.mvc.Http.Request)
 
 # Source page
 GET     /sources                    controllers.SourceController.index()

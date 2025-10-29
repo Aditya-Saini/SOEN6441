@@ -50,23 +50,24 @@ public class SearchController extends Controller {
     /**
      * Handle search form submission.
      * 
-     * @param request the HTTP request containing search parameters
      * @return a CompletionStage containing the search results
      */
     public CompletionStage<Result> search(Http.Request request) {
         return CompletableFuture.supplyAsync(() -> {
-            // Get search query from form data
-            String query = request.queryString("query").length > 0 ? 
-                          request.queryString("query")[0] : "";
-            
-            // For now, return mock results
-            List<String> mockResults = new ArrayList<>();
-            if (!query.isEmpty()) {
-                mockResults.add("Mock article 1 for: " + query);
-                mockResults.add("Mock article 2 for: " + query);
-                mockResults.add("Mock article 3 for: " + query);
+            // Get search query from request query params
+            String query = request.getQueryString("query");
+            if (query == null) {
+                query = "";
             }
-            
+
+            // Dummy data commented out; return empty list until real integration
+            List<String> mockResults = new ArrayList<>();
+            // if (!query.isEmpty()) {
+            //     mockResults.add("Mock article 1 for: " + query);
+            //     mockResults.add("Mock article 2 for: " + query);
+            //     mockResults.add("Mock article 3 for: " + query);
+            // }
+
             return ok(views.html.search.render("Search Results for: " + query, mockResults));
         }, httpExecutionContext.current());
     }
