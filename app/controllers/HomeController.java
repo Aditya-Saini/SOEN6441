@@ -48,7 +48,6 @@ public class HomeController extends Controller {
         }, httpExecutionContext.current());
     }
     
-//    hello
 
     /**
      * Health check endpoint for monitoring the application status.
