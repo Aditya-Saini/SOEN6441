@@ -47,6 +47,8 @@ public class HomeController extends Controller {
             return ok(views.html.index.render("Welcome to NotiLytics!"));
         }, httpExecutionContext.current());
     }
+    
+//    hello
 
     /**
      * Health check endpoint for monitoring the application status.
