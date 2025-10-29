@@ -26,6 +26,6 @@ EXPOSE 8080
 # Start Play (frontend + backend in same process)
 CMD ["/opt/app/bin/notilytics", \
      "-Dplay.http.secret.key=${PLAY_SECRET}", \
-     "-Dhttp.port=${PORT}", \
+     "-Dhttp.port=8080", \
      "-Dhttp.address=0.0.0.0", \
      "-Dplay.server.pidfile.path=/dev/null"]
