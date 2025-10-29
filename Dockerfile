@@ -19,13 +19,12 @@ WORKDIR /opt/app
 COPY --from=build /app/target/universal/stage /opt/app
 
 # Environment
-ENV PLAY_SECRET=changeme
 ENV PORT=8080
 EXPOSE 8080
 
 # Start Play (frontend + backend in same process)
 CMD ["/opt/app/bin/notilytics", \
-     "-Dplay.http.secret.key=${PLAY_SECRET}", \
+     "-Dplay.http.secret.key=f29d1d6e40a87a5b38d5e2a1cf41b96f4acb8c56e96d64fbac3ad594a6924b32", \
      "-Dhttp.port=8080", \
      "-Dhttp.address=0.0.0.0", \
      "-Dplay.server.pidfile.path=/dev/null"]
